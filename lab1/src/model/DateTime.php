@@ -2,10 +2,7 @@
 
 namespace model;
 
-
 /* Show Date & Time */
-/* strftime(): formats date & time based on locale */
-
 
 class DateTime {
 	
@@ -16,7 +13,6 @@ class DateTime {
 
 
 	public function getDateTime() {
-
 
  		/* Switch sats för veckodagar (%w: 0:Söndag - 6:Lördag) */
 		$weekdayID = strftime("%w");
@@ -44,7 +40,6 @@ class DateTime {
 		        $weekday = "Söndag";
 		        break;
 		}
-
 
 		/* Switch sats för månader (%m: 01: januari - 12: december) */
 		$monthID = strftime("%m");

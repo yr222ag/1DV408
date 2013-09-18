@@ -11,8 +11,7 @@ class Form {
 	public function getForm() {
 
 		// Loggar vi in?
-		if ($_POST && $_SERVER["QUERY_STRING"] == "login")
-		{
+		if ($_POST && $_SERVER["QUERY_STRING"] == "login") {
 			// Hämta postade värden
 			$this->user = $_REQUEST["user"];
 			$this->pass = $_REQUEST["pass"];
@@ -21,22 +20,20 @@ class Form {
 		    $_SESSION["loggedIn"] = "false";
 
 			// Validera användare
-			if ($this->user == "")
-			{
+			if ($this->user == "") {
 				$this->message = "Användarnamn saknas";
 			}
 		    // Validera lösenord
 		    elseif ($this->pass == "") {
 		        $this->message = "Lösenordet saknas";
 		    }
-		    // Rätt användare + lösen?
-		    elseif (strtolower($this->user) == "admin" && $this->pass == "Password")
-		    {
+		    // Rätt användare + lösenord?
+		    elseif (strtolower($this->user) == "admin" && $this->pass == "Password") {
 		        // Inloggade!
 		        $_SESSION["loggedIn"] = "true";
 		        $this->message = "Inloggning lyckades";
 		    } else {
-		        // Fel användare/lösen
+		        // Fel användare/lösenord
 		        $this->message = "Felaktigt användarnamn och/eller lösenord";
 			}
 		}
@@ -48,18 +45,20 @@ class Form {
 		}
 
 		
-		if ($_SESSION["loggedIn"] == "true") {
+		if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == "true") {
 
-			// Inloggad, visa logut-knapp
+				// Inloggad, visa logut-knapp
 			    return '
 			    <h2>Admin är inloggad</h2><br/>
-				' . $this->message . '
-			    <form action="index.php?logout" method="post" enctype="multipart/form-data">
-					<input type="submit" name="submit" value="Logga ut" />
+				<form action="index.php?logout" method="post" enctype="multipart/form-data">
+			    	<fieldset>
+			    		' . $this->message . '<br/>
+						<input type="submit" name="submit" value="Logga ut" />
+					</fieldset>
 				</form>';
 				} else {
 
-			// Inte inloggad, visa login-formulär
+				// Inte inloggad, visa login-formulär
 			    return '
 			    <h2>Ej inloggad</h2><br />
 				<form action="index.php?login" method="post" enctype="multipart/form-data">

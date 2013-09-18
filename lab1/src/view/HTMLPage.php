@@ -2,7 +2,6 @@
 
 namespace view;
 
-
 class HTMLPage {
 
 	/**
